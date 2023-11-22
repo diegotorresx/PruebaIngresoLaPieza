@@ -14,7 +14,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("MyAllowSpecificOrigins",
         corsBuilder =>
         {
-            corsBuilder.WithOrigins("http://localhost:51654") // Ajusta según la URL de tu cliente
+            corsBuilder.AllowAnyOrigin() // Ajusta según la URL de tu cliente
                        .AllowAnyHeader()
                        .AllowAnyMethod();
         });
