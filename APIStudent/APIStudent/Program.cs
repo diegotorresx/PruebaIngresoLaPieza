@@ -7,7 +7,20 @@ Batteries.Init();
 
 // Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Configuración de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("MyAllowSpecificOrigins",
+        corsBuilder =>
+        {
+            corsBuilder.WithOrigins("http://localhost:51654") // Ajusta según la URL de tu cliente
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+        });
+});
+
+// Configuración de Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -21,6 +34,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Usa CORS
+app.UseCors("MyAllowSpecificOrigins"); // Asegúrate de llamar a UseCors antes de UseRouting y UseAuthorization
 
 app.UseAuthorization();
 
