@@ -1,0 +1,45 @@
+/* Barra de búsqueda */
+.search-bar {
+  width: 100%; /* Ocupa el ancho completo de la página */
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 8px rgba(102, 175, 233, .6);
+}
+
+/* Estilos para la tabla */
+.student-table-container {
+  overflow: auto;
+  max-height: 400px;
+}
+
+.student-table .mat-header-cell, 
+.student-table .mat-cell {
+  padding: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* Estilos para los botones */
+.save-button {
+  background-color: green;
+  color: white;
+  margin-right: 8px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+}

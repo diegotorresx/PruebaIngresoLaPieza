@@ -1,0 +1,62 @@
+<div class="search-bar">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar">
+  </mat-form-field>
+</div>
+
+<!-- Contenedor de la Tabla con Scroll -->
+<div class="student-table-container">
+  <mat-table class="mat-elevation-z8 student-table" [dataSource]="studentsForms" matSort>
+        <!-- Columna 'Username' -->
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+          <mat-cell *matCellDef="let studentForm">
+            <input matInput placeholder="Username" [formControl]="studentForm.get('username')">
+          </mat-cell>
+        </ng-container>
+
+        <!-- Columna 'First Name' -->
+        <ng-container matColumnDef="firstName">
+          <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+          <mat-cell *matCellDef="let studentForm">
+              <input matInput placeholder="First Name" [formControl]="studentForm.get('firstName')">
+          </mat-cell>
+        </ng-container>
+
+        <!-- Columna 'Last Name' -->
+        <ng-container matColumnDef="lastName">
+          <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+          <mat-cell *matCellDef="let studentForm">
+              <input matInput placeholder="Last Name" [formControl]="studentForm.get('lastName')">
+          </mat-cell>
+        </ng-container>
+
+        <!-- Columna 'Age' -->
+        <ng-container matColumnDef="age">
+          <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+          <mat-cell *matCellDef="let studentForm">
+              <input matInput placeholder="Age" type="number" [formControl]="studentForm.get('age')">
+          </mat-cell>
+        </ng-container>
+
+        <!-- Columna 'Career' -->
+        <ng-container matColumnDef="career">
+          <mat-header-cell *matHeaderCellDef> Career </mat-header-cell>
+          <mat-cell *matCellDef="let studentForm">
+              <input matInput placeholder="Career" [formControl]="studentForm.get('career')">
+          </mat-cell>
+        </ng-container>
+
+        <!-- Columna de Acciones -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+          <mat-cell *matCellDef="let studentForm; let i = index">
+            <button mat-raised-button color="primary" (click)="save(studentForm)" [disabled]="!studentForm.valid">Guardar</button>
+            <button mat-raised-button color="warn" (click)="delete(studentForm.value.id)" *ngIf="i < studentsForms.length - 1">Eliminar</button>
+          </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let studentForm; columns: displayedColumns" [formGroup]="studentForm"></mat-row>
+  </mat-table>
+</div>
